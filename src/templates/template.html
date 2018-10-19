@@ -45,7 +45,7 @@
 							<div class="bar_block">
 								<div class="bar_labels">{{name}}</div>
 								<div class="bar_container">
-									<div class="bar" style="width:{{percentage}}%;background-color: {{colour}};">{{percentage}}%</div>
+									<div class="bar" style="width:{{percentage}}%;background-color: {{colour}};"></div><div class="votes_label">{{votes}}</div>
 								</div>
 							</div>
 							{{/each}}
@@ -64,7 +64,7 @@
 
 		<div>
 
-			<div id="viewer" on-tap="['results']"></div>
+			<div id="viewer" on-click="['results']"></div>
 			
 		</div>
 

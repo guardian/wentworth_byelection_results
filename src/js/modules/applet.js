@@ -1,8 +1,6 @@
 import xr from 'xr';
 import template from '../../templates/template.html'
-import Ractive from 'ractive'
-import ractiveTap from 'ractive-events-tap'
-import ractiveEventsHover from 'ractive-events-hover'
+//import Ractive from 'ractive'
 Ractive.DEBUG = false;
 
 const $ = selector => document.querySelector(selector)
@@ -14,31 +12,31 @@ export class App {
 
 		var self = this
 
-		self.timeout = 0
+		this.timeout = 0
 
-		self.candidates = googledoc.candidates
+		this.candidates = googledoc.candidates
 
-		self.prediction = googledoc.prediction[0].value
+		this.prediction = googledoc.prediction[0].value
 
-		self.incumbent = googledoc.prediction[1].value
+		this.incumbent = googledoc.prediction[1].value
 
-		self.counting = (googledoc.prediction[2].value==='TRUE') ? true : false ;
+		this.counting = (googledoc.prediction[2].value==='TRUE') ? true : false ;
 
-		for (var i = 0; i < self.candidates.length; i++) {
+		for (var i = 0; i < this.candidates.length; i++) {
 
-			self.candidates[i].votes = ''
-			self.candidates[i].percentage = ''
-			self.candidates[i].candidate_id = +self.candidates[i].candidate_id
+			this.candidates[i].votes = ''
+			this.candidates[i].percentage = ''
+			this.candidates[i].candidate_id = +this.candidates[i].candidate_id
 
 		}
 
-		if (self.counting) {
+		if (this.counting) {
 
 			window.setInterval(() => this.livewire(), 30000);
 
 		}
 
-		self.database = {
+		this.database = {
         	prediction: self.prediction,
         	incumbent: self.incumbent,
         	counting: self.counting,
@@ -71,10 +69,6 @@ export class App {
 		var self = this
 
         this.ractive = new Ractive({
-            events: { 
-                tap: ractiveTap,
-                hover: ractiveEventsHover
-            },
             el: '#electorate_container',
             data: self.database,
             template: template,
@@ -167,11 +161,6 @@ export class App {
 
 		self.database.chart = copy.splice(0, 5)
 
-		for (var i = 0; i < self.database.chart.length; i++) {
-			self.database.chart[i].percentage = Math.floor(Math.random() * (60 - 10 + 1)) + 10;
-			console.log(self.database.chart[i].percentage)
-		}
-
 		self.database.chart.sort( (a, b) => {
 
 		    return b["percentage"] - a["percentage"]
@@ -206,4 +195,6 @@ export class App {
 		});
 
 	}
+
+
 }
