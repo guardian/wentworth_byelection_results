@@ -32,7 +32,7 @@ export class App {
 
 		if (this.counting) {
 
-			window.setInterval(() => this.livewire(), 30000);
+			window.setInterval(() => self.livewire(), 30000);
 
 		}
 
@@ -90,6 +90,8 @@ export class App {
 
     	var self = this
 
+    	console.log("Beep")
+
         xr.get('https://interactive.guim.co.uk/2018/10/aus-byelections/recentResults.json?t=' + new Date().getTime()).then((resp) => {
 
            	if (resp.status === 200) {
@@ -133,11 +135,11 @@ export class App {
 
 		self.counted = Math.round( ( parseInt(json.votesCounted) / parseInt(json.enrollment) * 100 ) * 10 ) / 10
 
-		for (let i = 0; i < self.candidates.length; i++) {
+		for (let i = 0; i < self.database.candidates.length; i++) {
 
 			let candidate = candidates.find( (item) => {
 
-			    return item.candidate_id === self.candidates[i].candidate_id
+			    return item.candidate_id === self.database.candidates[i].candidate_id
 
 			});
 
