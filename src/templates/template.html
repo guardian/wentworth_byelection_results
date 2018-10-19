@@ -1,0 +1,106 @@
+
+
+	<div class="le-table">
+
+		<div id="electorate_panel" class="electorate_panel">
+
+			<h2>Wentworth byelection results</h2>
+
+		</div>
+
+
+
+		<div id="electorate_block">
+
+			<div class="le-table-wrapper">
+
+				<div class="column_wrapper">
+
+					<div class="electoral_candidate_table">
+
+						<div class="forecast_block">
+
+							<div class="prediction_block">
+
+								<div class="forecast_block_label">Prediction</div>
+
+								<span class="{{shortify(prediction)}}">{{partify(prediction)}}</span>
+
+							</div>
+
+							<div class="incumbent_block">
+
+								<div class="forecast_block_label">Incumbent</div>
+
+								<span class="liberal">{{incumbent}}</span>
+								
+							</div>
+							
+						</div>
+
+						<div class="candidates_chart">
+							{{#if chart}} 
+							<div class="chart_block">
+							{{#each chart}}
+							<div class="bar_block">
+								<div class="bar_labels">{{name}}</div>
+								<div class="bar_container">
+									<div class="bar" style="width:{{percentage}}%;background-color: {{colour}};">{{percentage}}%</div>
+								</div>
+							</div>
+							{{/each}}
+							</div>
+							{{/if}}
+						</div>
+
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div>
+
+			<div id="viewer" on-tap="['results']"></div>
+			
+		</div>
+
+		
+
+		<div id="electorate_dropdown" class="hide">			
+
+
+
+			<div class="candidates_table">
+
+				<h2>Candidates</h2>
+
+				<table cellspacing="0">
+					<tbody>
+						<tr>
+							<th class="table-results"></th>
+							<th class="table-results">Candidate name</th>
+							<th class="table-results">Party</th>
+							<th class="table-results{{classify()}}">Votes</th>
+							<th class="table-results{{classify()}}">%</th>
+						</tr>
+						{{#each candidates}}
+						<tr>
+							<td class="table-results"></td>
+							<td class="table-results">{{name}}</td>
+							<td class="table-results"><div style="border-bottom: 3px solid {{colour}};">{{party_long}}</div></td>
+							<td class="table-results{{classify()}}">{{votes}}</td>
+							<td class="table-results{{classify()}}">{{percentage}}</td>
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
+				
+			</div>
+
+		</div>
+
+	</div>

@@ -1,0 +1,243 @@
+@import "mq";
+
+$seatstack-bp: tablet !default;
+$seatstack-height: 60px !default;
+$seatstack-2PP-height: 160px !default;
+$seatstack-2PP-bar-height: 60px;
+$seatstack-height-small: 37px;
+$seatstack-top: 30px !default;
+
+$partyColors: (
+    lnp:    #075e91,
+    coal:    #005689,
+    nat:    #197caa,
+    lib:    #005689,
+    clp:    #005689,
+    lp:    #005689,
+    np:    #197caa,
+    speaker:    #005689,
+    grn:  #298422,
+    alp:    #b51800,
+    kap:  #b814d9,
+    pup: #7D0069,
+    nxt: #e6711b,
+    xen: #e6711b,
+    others: #B3B3B4,
+    ind:    #B3B3B4,
+    other:  #B3B3B4,
+    onp: #ff9b0b,
+    pending:    #dfdfdf
+);
+
+[data-partyname='alp'] { background-color: #b51800; color: #b51800; }
+[data-partyname='grn'] { background-color: #298422; color: #298422; }
+[data-partyname='ag'] { background-color: #298422; color: #298422; }
+[data-partyname='ind'] { background-color: #B3B3B4; color: #B3B3B4; }
+[data-partyname='Pending'] { background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAKklEQVQIW2N8+PDhGQYoOHnyJAMjTADEMTc3hwjAOCCFjKtWrToDkoEBAG1vFhyE06BwAAAAAElFTkSuQmCC) repeat; color: #B3B3B4; }
+[data-partyname='pup'] { background-color: #7D0069; color: #7D0069; }
+[data-partyname='kap'] { background-color: #b814d9; color: #b814d9; }
+[data-partyname='lnp'] { background-color: #075e91; color: #075e91; }
+[data-partyname='lib'] { background-color: #005689; color: #005689; }
+[data-partyname='coal'] { background-color: #005689; color: #005689; }
+[data-partyname='cln'] { background-color: #005689; color: #005689; }
+[data-partyname='lp'] { background-color: #005689; color: #005689; }
+[data-partyname='np'] { background-color: #197caa; color: #197caa; }
+[data-partyname='clp'] { background-color: #005689; color: #005689; }
+[data-partyname='nat'] { background-color: #197caa; color: #197caa; }
+[data-partyname='nxt'] { background-color: #e6711b; color: #e6711b; }
+[data-partyname='xen'] { background-color: #e6711b; color: #e6711b; }
+[data-partyname='other'] { background-color: #b3b3b3; color: #b3b3b3; }
+[data-partyname='onp'] { background-color: #ff9b0b; color: #ff9b0b; }
+
+$arrowColorOverrides: (
+    ld:  #ff920d,
+    snp: #e6bd03,
+);
+
+.kerrynphelps {
+	background-color: #B3B3B4;
+	padding: 5px;
+	color: black;
+}
+
+.davesharma {
+	background-color: #005689;
+	padding: 5px;
+	color: black;
+}
+
+.timmurray {
+	background-color: #b51800;
+	padding: 5px;
+	color: black;
+}
+
+.liberal {
+	background-color: #005689;
+	padding: 5px;
+	color: white;
+}
+
+.unknown {
+	background-color: white;
+	padding: 5px;
+	color: black;
+}
+
+.unknown {
+	background-color: white;
+	padding: 5px;
+	color: black;
+}
+
+.incumbent_block {
+	margin-top: 10px;
+}
+
+@function partyColor($party) {
+    @return map-get($partyColors, $party);
+}
+
+@function arrowColor($party) {
+    @if map-has-key($arrowColorOverrides, $party) {
+        @return map-get($arrowColorOverrides, $party);
+    } @else {
+        @return partyColor($party);
+    }
+}
+
+#electorate_container {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 600px;
+	margin: auto;
+	margin-top: 40px;
+	margin-bottom: 40px;
+
+	@include mq($until: desktop) {
+		padding: 20px;
+	}
+
+}
+
+#viewer {
+	float: right;
+	line-height: 50px;
+	display: inline-block;
+	background-color: lightgrey;
+	border-radius: 25px;
+	box-sizing: border-box;
+	padding-left: 20px;
+	padding-right: 20px;
+	color: black;
+	cursor: pointer;
+	font-family: 'Guardian Text Sans Web', TextSans, Arial, sans-serif;
+	margin-bottom: 20px;
+}
+
+#viewer:after {
+  content: "View all candidates";
+}
+
+#viewer.hide:after {
+  content: "Hide all candidates";
+}
+
+
+.le-table {
+	width: 100%;
+	display: inline-block;
+}
+
+.hide {
+	display: none;
+}
+
+.candidates_table table {
+	font-family: 'Guardian Text Sans Web', TextSans, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 18px;
+	border-collapse: none;
+	padding-bottom: 15px;
+	border-spacing: 0px;
+}
+
+.candidates_table table tr>td, .candidates_table table tr>th {
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.candidates_table tr td:nth-child(4), .candidates_table tr th:nth-child(4) {
+  text-align: center;
+}
+
+.forecast_block_label {
+	float: left;
+	margin-right: 20px;
+	font-family: 'Guardian Text Sans Web', TextSans, Arial, sans-serif;
+}
+
+#electorate_block {
+	margin-top: 20px;
+}
+
+.candidates_chart {
+	width: 100%;
+	display: inline-block;
+	margin-bottom: 10px;
+	border-top: 1px solid darkgrey;
+	border-bottom: 1px solid darkgrey;
+	margin-top: 20px;
+	padding-bottom: 20px;
+}
+
+.forecast_block span {
+	font-family: 'Guardian Text Sans Web', TextSans, Arial, sans-serif;
+}
+
+.chart_block {
+	width: 100%;
+	position: relative;
+	margin-top: 20px;
+	font-family: 'Guardian Text Sans Web', TextSans, Arial, sans-serif;
+}
+
+.bar_block {
+	height:25px;
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+.bar_container {
+	width: calc(100% - 180px);
+	height:25px;
+	float: left;
+}
+
+
+
+.bar {
+	height:25px;
+	float: left;
+	clear: right;
+	width: 0px;
+	padding-left: 10px;
+	font-size: 12px;
+	overflow: visible;
+	line-height:25px;
+	color: white;
+	margin-right: 10px;
+}
+
+.bar_labels {
+	width: 180px;
+	height:25px;
+	line-height:25px;
+	float: left;
+	font-size: 12px;
+	margin-bottom: 5px;
+}
+
+.table-results span {
+	padding: 5px;
+}
